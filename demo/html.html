@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký thành viên</title>
+    <!-- Link đến CSS của Bootstrap 4 -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../javascript/bootstrap.min.js"></script>
+    <script src="../javascript/jquery-3.6.0.min.js"></script>
+    <script src="../demo/js.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Đăng ký thành viên</h2>
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="username">Tài khoản:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập tên tài khoản">
+            <div class="invalid-feedback" id="username-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Nhập mật khẩu">
+            <div class="invalid-feedback" id="password-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Xác nhận mật khẩu:</label>
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="Nhập lại mật khẩu">
+            <div class="invalid-feedback" id="confirm-password-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Nhập địa chỉ email">
+            <div class="invalid-feedback" id="email-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại:</label>
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại">
+            <div class="invalid-feedback" id="phone-error"></div>
+          </div>
+          <div class="form-group">
+            <label for="birthdate">Ngày sinh:</label>
+            <input type="date" class="form-control" id="birthdate" name="birthdate">
+            <div class="invalid-feedback" id="birthdate-error"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Đăng ký</button>
+        </form>
+        <div class="alert alert-success mt-3" id="signup-success" style="display: none;">
+          <p>Bạn đã đăng ký thành công với thông tin sau:</p>
+          <ul>
+            <li>Tài khoản: <span id="signup-username"></span></li>
+            <li>Email: <span id="signup-email"></span></li>
+            <li>Số điện thoại: <span id="signup-phone"></span></li>
+            <li>Ngày sinh: <span id="signup-birthdate"></span></li>
+          </ul>
+        </div>
+      </div>
+      
+<script>
+  $(document).ready(function() {
+    $('#signup-form').submit(function(event) {
+      event.preventDefault(); // ngăn chặn trang web reload sau khi submit form
+      
+      // Lấy giá trị từ các trường input
+      var username = $('#username').val();
+      var password = $('#password').val();
+      var confirmPassword = $('#confirm-password').val();
+      var email = $('#email').val();
+      var phone = $('#phone').val();
+      var birthdate = $('#birthdate').val();
+      
+      // Kiểm tra dữ liệu nhập vào
+      var errors = [];
+      if (!username) {
+        errors.push('Bạn phải nhập tên tài khoản.');
+        $('#username-error').text('Bạn phải nhập tên tài khoản.').show();
+      } else {
+        $('#username-error').hide();
+      }
+      
+      if (!password) {
+        errors.push('Bạn phải nhập mật khẩu.');
+        $('#password-error').text('Bạn phải nhập mật khẩu.').show();
+      } else {
+        $('#password-error').hide();
+      }
+      
+      if (!confirmPassword) {
+        errors.push('Bạn phải nhập xác nhận mật khẩu.');
+        $('#confirm-password-error').text('Bạn phải nhập xác nhận mật khẩu.').show();
+      } else if (confirmPassword !== password) {
+        errors.push('Mật khẩu và xác nhận mật khẩu không khớp.');
+        $('#confirm-password-error').text('Mật khẩu và xác nhận mật khẩu không khớp.').show();
+      } else {
+        $('#confirm-password-error').hide();
+      }
+      
+      if (!email) {
+        errors.push('Bạn phải nhập email.');
+        $('#email-error').text('Bạn phải nhập email.').show();
+      } else {
+        $('#email-error').hide();
+      }
+      
+      if (!phone) {
+        errors.push('Bạn phải nhập số điện thoại.');
+        $('#phone-error').text('Bạn phải nhập số điện thoại.').show();
+      } else {
+        $('#phone-error').hide();
+      }
+      
+      if (!birthdate) {
+        errors.push('Bạn phải nhập ngày sinh.');
+        $('#birthdate-error').text('Bạn phải nhập ngày sinh.').show();
+      } else {
+        $('#birthdate-error').hide();
+      }
+      
+      // Nếu có lỗi, hiển thị thông báo lỗi
+      if (errors.length > 0) {
+        return;
+      }
+      
+      // Nếu không có lỗi, hiển thị thông tin đăng ký
+      $('#signup-username').text(username);
+      $('#signup-email').text(email);
+      $('#signup-phone').text(phone);
+      $('#signup-birthdate').text(birthdate);
+      $('#signup-success').show();
+      $('#signup-form').hide();
+    });
+  });
+</script>
+<script src="../demo/js.js"></script>
+
+<script src="../javascript/bootstrap.min.js"></script>
+<script src="../javascript/jquery-3.6.0.min.js"></script>
+
